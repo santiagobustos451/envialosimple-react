@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react';
-import SignOutButton from './SignOutButton';
-import { Link } from 'react-router-dom';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Dropdown from './Dropdown';
-import Paginator from './Paginator';
+import Dropdown from '../components/Dropdown';
+import Paginator from '../components/Paginator';
+import Modal from '../components/Modal';
+import AddProduct from './AddProduct';
 import '../style/list.css';
 import '../style/base.css';
-import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Outlet } from 'react-router-dom';
+import {
+  faAdd,
+  faEdit,
+  faSearch,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import EditProduct from './EditProduct';
+import DeleteProduct from './DeleteProduct';
 
 interface UserData {
   username: string;
@@ -16,7 +22,7 @@ interface UserData {
 }
 
 interface Product {
-  _id: string | null;
+  _id: string;
   name: string;
   price: number;
 }
@@ -35,7 +41,7 @@ function ListProducts() {
   const [filter, setFilter] = useState('');
   const [orderBy, setOrderBy] = useState<Filter>({
     value: '_id',
-    label: 'None',
+    label: 'Default',
   });
   const [order, setOrder] = useState<Filter>({
     value: 'asc',
@@ -46,6 +52,15 @@ function ListProducts() {
     label: '5',
   });
   const [totalProducts, setTotalProducts] = useState(0);
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
+  const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
+  const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
+    useState(false);
+  const [changeProduct, setChangeProduct] = useState<Product>({
+    _id: '',
+    name: '',
+    price: 0,
+  });
 
   /* API Fetch configuration */
   const auth = useAuthUser<UserData>();
@@ -107,25 +122,21 @@ function ListProducts() {
   /* Fetch products again when state changes */
   useEffect(() => {
     fetchProducts();
-  }, [page, orderBy, order, limit, filter]);
+  }, [
+    page,
+    orderBy,
+    order,
+    limit,
+    filter,
+    isAddProductModalOpen,
+    isEditProductModalOpen,
+    isDeleteProductModalOpen,
+  ]);
 
   /* Reset page to 1 after searching or changing the limit */
   useEffect(() => {
     setPage(1);
   }, [limit, filter]);
-
-  /* Fill the table for consistent Height */
-  /* const tableFiller = () => {
-    let fillerCount = Number(limit.value) - products.length;
-    let fillerArray = [];
-
-    console.log(Number(limit.value), products.length);
-
-    for (let i = 0; i < fillerCount; i++) {
-      fillerArray.push({ name: '', price: '' });
-    }
-    return fillerArray;
-  }; */
 
   /* JSX Rendering */
   return (
@@ -134,28 +145,33 @@ function ListProducts() {
         {/* Header and Searchbar */}
         <div className="header">
           <div className="title">Products</div>
-          <div className="searchbar">
-            {filter != '' && (
-              <button className="link" onClick={() => resetSearch()}>
-                Clear Search
-              </button>
-            )}
-            <form onSubmit={handleSearch}>
-              <input
-                type="text"
-                placeholder="Search..."
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-              />
-              <button className="search-button" type="submit">
-                <FontAwesomeIcon className="icon" icon={faSearch} />
-              </button>
-            </form>
+          <div className="header-actions">
+            <div className="searchbar">
+              {filter != '' && (
+                <button className="link" onClick={() => resetSearch()}>
+                  Clear Search
+                </button>
+              )}
+              <form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                />
+                <button className="search-button" type="submit">
+                  <FontAwesomeIcon className="icon" icon={faSearch} />
+                </button>
+              </form>
+            </div>
+            <button
+              className="add-button"
+              onClick={() => setIsAddProductModalOpen(true)}
+            >
+              <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
+            </button>
           </div>
-          <Link to={'addProduct'}>
-            <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
-          </Link>
-          <SignOutButton></SignOutButton>
+          {/* <SignOutButton></SignOutButton> */}
         </div>
 
         {/* Filters */}
@@ -164,7 +180,7 @@ function ListProducts() {
             label={'Order by'}
             placeholder="Order by"
             options={[
-              { label: 'None', value: '_id' },
+              { label: 'Default', value: '_id' },
               { label: 'Price', value: 'price' },
               { label: 'Name', value: 'name' },
             ]}
@@ -189,6 +205,7 @@ function ListProducts() {
               <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -196,14 +213,26 @@ function ListProducts() {
                 <tr key={product.name}>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
+                  <td className="actions">
+                    <button
+                      onClick={() => {
+                        setIsEditProductModalOpen(true);
+                        setChangeProduct(product);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsDeleteProductModalOpen(true);
+                        setChangeProduct(product);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                    </button>
+                  </td>
                 </tr>
               ))}
-              {/* {tableFiller().map((filler, index) => (
-                <tr key={JSON.stringify(filler) + index}>
-                  <td></td>
-                  <td></td>
-                </tr>
-              ))} */}
             </tbody>
           </table>
           <div className={isLoading ? 'active loading' : 'loading'}>
@@ -238,7 +267,30 @@ function ListProducts() {
           </div>
         </div>
       </div>
-      <Outlet></Outlet>
+      <Modal
+        isOpen={isAddProductModalOpen}
+        setIsOpen={setIsAddProductModalOpen}
+      >
+        <AddProduct setModalOpen={setIsAddProductModalOpen}></AddProduct>
+      </Modal>
+      <Modal
+        isOpen={isEditProductModalOpen}
+        setIsOpen={setIsEditProductModalOpen}
+      >
+        <EditProduct
+          product={changeProduct}
+          setModalOpen={setIsEditProductModalOpen}
+        ></EditProduct>
+      </Modal>
+      <Modal
+        isOpen={isDeleteProductModalOpen}
+        setIsOpen={setIsDeleteProductModalOpen}
+      >
+        <DeleteProduct
+          product={changeProduct}
+          setModalOpen={setIsDeleteProductModalOpen}
+        ></DeleteProduct>
+      </Modal>
     </>
   );
 }

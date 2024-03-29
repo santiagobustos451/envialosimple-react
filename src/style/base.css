@@ -10,6 +10,7 @@
   --color-accent-dark: #e84a5f;
   --color-link: #fecea8;
   --color-visited: #e84a5f;
+  --color-error: #e4213b;
 
   --rounded-big: 1rem;
   --rounded-small: 0.3rem;
@@ -19,4 +20,29 @@
   font-family: Dosis, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   overflow: hidden;
+}
+
+button {
+  border: none;
+  background-color: var(--color-accent-dark);
+  color: var(--color-light-subdued);
+  padding: 5px;
+  border-radius: var(--rounded-small);
+}
+
+button:hover {
+  background-color: var(--color-accent);
+}
+
+button path {
+  fill: var(--color-light-subdued);
+}
+
+button:disabled {
+  background-color: var(--color-dark);
+  color: var(--color-dark-subdued);
+}
+
+button:disabled:hover {
+  background-color: var(--color-dark);
 }

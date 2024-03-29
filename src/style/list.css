@@ -13,8 +13,8 @@
   box-sizing: border-box;
   margin: 0 20px;
   grid-row: 3;
-  overflow-y: scroll;
   background-color: var(--color-dark-transparent);
+  overflow: scroll;
 }
 
 .table-outline.active {
@@ -47,11 +47,25 @@ table {
   border-collapse: separate;
 }
 
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
 table th,
 table td {
   padding: 16px;
   text-align: left;
   width: 50%;
+}
+
+table td.actions {
+  border-left: solid 1px var(--color-light-subdued);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 table th {
@@ -78,6 +92,12 @@ table tr:nth-child(odd) {
   align-items: center;
   box-shadow: 0px -4px 3px 3px var(--color-light-subdued);
   padding: 0 20px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .filters {
@@ -155,4 +175,20 @@ table tr:nth-child(odd) {
 .counter {
   width: 160px;
   text-align: end;
+}
+
+.add-button {
+  background-color: var(--color-accent-dark);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+.add-button:hover {
+  background-color: var(--color-accent);
+}
+
+.add-button path {
+  fill: var(--color-light-subdued);
 }

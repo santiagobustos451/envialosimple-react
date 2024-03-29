@@ -3,10 +3,9 @@ import AuthProvider from 'react-auth-kit';
 import RequireAuth from '@auth-kit/react-router/RequireAuth';
 import createStore from 'react-auth-kit/createStore';
 import Login from './pages/Login.tsx';
-import AddProduct from './components/AddProduct.tsx';
 import RouteError from './pages/RouteError.tsx';
 import './index.css';
-import ListProducts from './components/ListProducts.tsx';
+import ListProducts from './pages/ListProducts.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,12 +23,6 @@ const router = createBrowserRouter([
         <ListProducts />
       </RequireAuth>
     ),
-    children: [
-      {
-        path: 'addProduct',
-        element: <AddProduct />,
-      },
-    ],
   },
 ]);
 

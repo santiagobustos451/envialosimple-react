@@ -1,0 +1,70 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 100ms ease-in-out;
+  z-index: 1000;
+}
+
+.modal-container {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window {
+  position: relative;
+  background-color: var(--color-dark-subdued);
+  border-radius: var(--rounded-big);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 100ms ease-in-out;
+  pointer-events: none;
+  box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.4);
+  min-width: 300px;
+  height: 250px;
+}
+
+.modal-window.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
+
+.modal-window .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border-radius: var(--rounded-small);
+  border: none;
+}
+
+.modal-window .close-button:hover {
+  background-color: var(--color-dark);
+}
+
+.modal-window .close-button path {
+  fill: var(--color-light-subdued);
+}
