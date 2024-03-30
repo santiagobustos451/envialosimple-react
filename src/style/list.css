@@ -63,7 +63,6 @@ table th,
 table td {
   padding: 16px;
   text-align: left;
-  width: 50%;
 }
 
 table td.actions {
@@ -236,7 +235,67 @@ table tr:nth-child(odd) {
   display: none;
 }
 
-@media screen and (max-width: 767px) and (orientation: portrait) {
+@media screen and (max-width: 767px) {
+  .table-container {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 0;
+  }
+
+  .table-outline {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .title {
+    margin-left: 40px;
+  }
+
+  .add-button {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .counter {
+    grid-row: 2;
+    grid-column: 1;
+    justify-content: start;
+    padding-left: 20px;
+  }
+
+  .paginator {
+    grid-column: 1 / span 3;
+  }
+
+  .item-number {
+    display: none;
+    /* grid-row: 2;
+    grid-column: 2; */
+  }
+
+  .filters {
+    display: none;
+  }
+
+  .header-actions .add-button {
+    display: none;
+  }
+
+  .mobile-filters {
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+}
+
+@media screen and (max-height: 600px) {
   .table-container {
     margin: 0;
     padding: 0;

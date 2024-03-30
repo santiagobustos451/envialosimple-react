@@ -58,7 +58,6 @@ function ListProducts() {
   const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
   const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
     useState(false);
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
   const [changeProduct, setChangeProduct] = useState<Product>({
     _id: '',
     name: '',
@@ -206,9 +205,9 @@ function ListProducts() {
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th style={{ width: '100%' }}>Name</th>
+                <th style={{ minWidth: '100px', maxWidth: '100px' }}>Price</th>
+                <th style={{ width: '100px' }}>Actions</th>
               </tr>
             </thead>
             <tbody>

@@ -26,7 +26,7 @@ button {
   border: none;
   background-color: var(--color-accent-dark);
   color: var(--color-light);
-  padding: 4px;
+  padding: 6px;
   border-radius: var(--rounded-small);
 }
 

@@ -1,0 +1,123 @@
+.login-container {
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark);
+}
+
+.login-window {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.login-window > * {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  flex: 1;
+}
+
+.info {
+  background-color: var(--color-accent-dark);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.login-form {
+  padding: 20px;
+  background-color: var(--color-dark-subdued);
+  flex: 2;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-footer {
+  align-self: flex-end;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input {
+  box-sizing: border-box;
+  height: 36px;
+}
+
+.password-field .show-password {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  right: 0;
+  top: 0;
+}
+
+@media screen and (max-width: 1100px) {
+  input {
+    height: 48px;
+  }
+
+  .password-field .show-password {
+    height: 48px;
+    width: 48px;
+  }
+
+  .login-window {
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100dvw;
+    height: 100dvh;
+  }
+
+  .login-window > * {
+    width: 100%;
+  }
+
+  .info .title {
+    margin: 0;
+  }
+
+  .login-form {
+    background-color: var(--color-dark);
+    align-items: flex-start;
+  }
+
+  .login-form form {
+    width: 100%;
+  }
+
+  .login-form * {
+    font-size: large;
+  }
+
+  .login-form button {
+    padding: 20px;
+    font-size: large;
+  }
+}
