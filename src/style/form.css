@@ -21,11 +21,12 @@ input.form-field:focus {
 .modal-form .form-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   flex: 1;
 }
 
 .modal-form .title {
+  font-size: large;
   margin-bottom: 10px;
 }
 
@@ -37,4 +38,18 @@ input.form-field:focus {
 
 .form-error {
   color: var(--color-error);
+  margin-top: -10px;
+}
+
+.modal-form button {
+  padding: 10px;
+  font-size: medium;
+}
+
+.modal-form .form-line {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
 }

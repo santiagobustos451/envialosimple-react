@@ -1,6 +1,7 @@
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import '../style/form.css';
+import { useEffect } from 'react';
 
 type FormFields = {
   name: string;
@@ -14,9 +15,10 @@ interface UserData {
 
 interface AddProductProps {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
 }
 
-function AddProduct({ setModalOpen }: AddProductProps) {
+function AddProduct({ isOpen, setModalOpen }: AddProductProps) {
   const {
     register,
     handleSubmit,
@@ -28,6 +30,10 @@ function AddProduct({ setModalOpen }: AddProductProps) {
   const apiUrl = '/api/products/add';
   const auth = useAuthUser<UserData>();
   const token = auth?.token || '';
+
+  useEffect(() => {
+    reset();
+  }, [isOpen]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const queryParams = new URLSearchParams({
@@ -85,7 +91,7 @@ function AddProduct({ setModalOpen }: AddProductProps) {
             {...register('price', {
               required: 'This field is required',
               pattern: {
-                value: /\d+/,
+                value: /^\d+(\.\d+|)$/,
                 message: 'Only use numbers',
               },
             })}

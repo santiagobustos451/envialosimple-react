@@ -1,6 +1,7 @@
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import '../style/login.css';
 
 type FormFields = {
   username: string;
@@ -59,24 +60,34 @@ function Login() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} action="">
-        <input {...register('username')} type="text" placeholder="Username" />
-        {errors.username && (
-          <div className="form-error">{errors.username.message}</div>
-        )}
-        <input
-          {...register('password')}
-          type="password"
-          placeholder="Password"
-        />
-        {errors.password && (
-          <div className="form-error">{errors.password.message}</div>
-        )}
-        {errors.root && <div className="form-error">{errors.root.message}</div>}
-        <button disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Loading...' : 'Log In'}
-        </button>
-      </form>
+      <div className="login-container">
+        <div className="login-window">
+          <form onSubmit={handleSubmit(onSubmit)} action="">
+            <input
+              {...register('username')}
+              type="text"
+              placeholder="Username"
+            />
+            {errors.username && (
+              <div className="form-error">{errors.username.message}</div>
+            )}
+            <input
+              {...register('password')}
+              type="password"
+              placeholder="Password"
+            />
+            {errors.password && (
+              <div className="form-error">{errors.password.message}</div>
+            )}
+            {errors.root && (
+              <div className="form-error">{errors.root.message}</div>
+            )}
+            <button disabled={isSubmitting} type="submit">
+              {isSubmitting ? 'Loading...' : 'Log In'}
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

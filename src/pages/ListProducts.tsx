@@ -4,17 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dropdown from '../components/Dropdown';
 import Paginator from '../components/Paginator';
 import Modal from '../components/Modal';
-import AddProduct from './AddProduct';
+import FilterDropdown from '../components/FilterDropdown';
+import AddProduct from '../components/AddProduct';
 import '../style/list.css';
 import '../style/base.css';
 import {
   faAdd,
   faEdit,
+  faFilter,
   faSearch,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import EditProduct from './EditProduct';
-import DeleteProduct from './DeleteProduct';
+import EditProduct from '../components/EditProduct';
+import DeleteProduct from '../components/DeleteProduct';
 
 interface UserData {
   username: string;
@@ -56,6 +58,7 @@ function ListProducts() {
   const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
   const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
     useState(false);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
   const [changeProduct, setChangeProduct] = useState<Product>({
     _id: '',
     name: '',
@@ -75,7 +78,7 @@ function ListProducts() {
       page: String(page),
       limit: String(limit.value),
       filterName: filter,
-      orderBy: String(orderBy.value),
+      orderby: String(orderBy.value),
       order: String(order.value),
     });
     const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
@@ -241,43 +244,112 @@ function ListProducts() {
         </div>
 
         {/* Page Navigator */}
-        <div className="page-nav">
-          <Dropdown
-            label="Items per page"
-            classList="short up"
-            placeholder="Limit"
-            options={[
-              { label: '5', value: '5' },
-              { label: '10', value: '10' },
-              { label: '25', value: '25' },
-              { label: '50', value: '50' },
-            ]}
-            setSelected={setLimit}
-            selected={limit}
-          ></Dropdown>
-          <Paginator
-            currentPage={page}
-            totalPages={totalPages}
-            setPage={setPage}
-          ></Paginator>
-          <div className="counter">
+        <>
+          <div className="item-number">
+            <Dropdown
+              label="Items per page"
+              classList="short up"
+              placeholder="Limit"
+              options={[
+                { label: '1', value: '1' },
+                { label: '5', value: '5' },
+                { label: '10', value: '10' },
+                { label: '25', value: '25' },
+                { label: '50', value: '50' },
+              ]}
+              setSelected={setLimit}
+              selected={limit}
+            ></Dropdown>
+          </div>
+          <div className="paginator">
+            <Paginator
+              currentPage={page}
+              totalPages={totalPages}
+              setPage={setPage}
+            ></Paginator>
+          </div>
+          <div className="counter unselectable">
             Showing {page * Number(limit.value) - Number(limit.value) + 1}-
             {Math.min(page * Number(limit.value), totalProducts)} of{' '}
             {totalProducts}
           </div>
-        </div>
+        </>
+
+        {/* Mobile filters */}
+        <>
+          <div className="mobile-filters">
+            <button
+              className="add-button"
+              onClick={() => setIsAddProductModalOpen(true)}
+            >
+              <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
+            </button>
+            <Dropdown
+              customButton={
+                <button className="add-button">
+                  <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
+                </button>
+              }
+              customContent={
+                <div className="filter-menu">
+                  <FilterDropdown
+                    filterLabel="Order by"
+                    states={[
+                      {
+                        filter: orderBy,
+                        options: [
+                          { label: 'Default', value: '_id' },
+                          { label: 'Price', value: 'price' },
+                          { label: 'Name', value: 'name' },
+                        ],
+                      },
+                      {
+                        filter: order,
+                        options: [
+                          { label: 'Ascending', value: 'asc' },
+                          { label: 'Descending', value: 'desc' },
+                        ],
+                      },
+                    ]}
+                    stateSetters={[setOrderBy, setOrder]}
+                  ></FilterDropdown>
+                  <FilterDropdown
+                    filterLabel="Items per Page"
+                    states={[
+                      {
+                        filter: limit,
+                        options: [
+                          { label: '1', value: '1' },
+                          { label: '5', value: '5' },
+                          { label: '10', value: '10' },
+                          { label: '25', value: '25' },
+                          { label: '50', value: '50' },
+                        ],
+                      },
+                    ]}
+                    stateSetters={[setLimit]}
+                  ></FilterDropdown>
+                </div>
+              }
+            ></Dropdown>
+          </div>
+        </>
       </div>
       <Modal
         isOpen={isAddProductModalOpen}
         setIsOpen={setIsAddProductModalOpen}
       >
-        <AddProduct setModalOpen={setIsAddProductModalOpen}></AddProduct>
+        <AddProduct
+          isOpen={isAddProductModalOpen}
+          setModalOpen={setIsAddProductModalOpen}
+        ></AddProduct>
       </Modal>
       <Modal
         isOpen={isEditProductModalOpen}
         setIsOpen={setIsEditProductModalOpen}
       >
         <EditProduct
+          isOpen={isEditProductModalOpen}
           product={changeProduct}
           setModalOpen={setIsEditProductModalOpen}
         ></EditProduct>

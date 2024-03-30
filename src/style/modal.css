@@ -68,3 +68,11 @@
 .modal-window .close-button path {
   fill: var(--color-light-subdued);
 }
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .modal-window {
+    height: 300px;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+}

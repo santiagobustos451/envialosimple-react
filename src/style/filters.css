@@ -1,0 +1,60 @@
+.filter-menu {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--rounded-small);
+  font-size: large;
+}
+
+.filter-menu > * {
+  border-bottom: solid 1px var(--color-light-subdued);
+}
+
+.filter-menu > *:last-child {
+  border-bottom: none;
+}
+
+.filter-button {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  user-select: none;
+}
+
+.filter-button:first-of-type {
+  border-top: none;
+}
+
+.current-states {
+  display: flex;
+  width: fit-content;
+  gap: 10px;
+}
+
+.current-state-value {
+  font-size: medium;
+  color: var(--color-accent);
+}
+
+.filter-options {
+  box-sizing: border-box;
+  background-color: var(--color-dark-subdued);
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  transition: transform 100ms ease-in-out;
+  border-radius: 0 0 var(--rounded-small) var(--rounded-small);
+}
+
+.filter-options.active {
+  padding: 20px;
+  height: auto;
+  opacity: 1;
+  pointer-events: all;
+}

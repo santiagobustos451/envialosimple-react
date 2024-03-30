@@ -55,7 +55,7 @@ function DeleteProduct({ setModalOpen, product }: DeleteProductProps) {
   return (
     <>
       <div className="modal-form">
-        <div className="title">Are you sure</div>
+        <div className="title">Deleting product. Are you sure?</div>
         <div>This action cannot be undone</div>
         <div className="form-body"></div>
         <div className="form-footer">

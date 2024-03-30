@@ -1,6 +1,7 @@
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import '../style/form.css';
+import { useEffect } from 'react';
 
 type FormFields = {
   name: string;
@@ -19,11 +20,12 @@ interface Product {
 }
 
 interface EditProductProps {
+  isOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   product: Product;
 }
 
-function EditProduct({ setModalOpen, product }: EditProductProps) {
+function EditProduct({ isOpen, setModalOpen, product }: EditProductProps) {
   const {
     register,
     handleSubmit,
@@ -33,12 +35,14 @@ function EditProduct({ setModalOpen, product }: EditProductProps) {
     reset,
   } = useForm<FormFields>();
 
-  setValue('name', product.name);
-  setValue('price', String(product.price));
-
   const apiUrl = `/api/products/edit/${product._id}`;
   const auth = useAuthUser<UserData>();
   const token = auth?.token || '';
+
+  useEffect(() => {
+    setValue('name', product.name);
+    setValue('price', String(product.price));
+  }, [isOpen]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const queryParams = new URLSearchParams({
@@ -79,7 +83,7 @@ function EditProduct({ setModalOpen, product }: EditProductProps) {
   return (
     <>
       <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="title">Add product</div>
+        <div className="title">Edit product</div>
         <div className="form-body">
           <input
             {...register('name', {
@@ -96,7 +100,7 @@ function EditProduct({ setModalOpen, product }: EditProductProps) {
             {...register('price', {
               required: 'This field is required',
               pattern: {
-                value: /\d+/,
+                value: /^\d+(\.\d+|)$/,
                 message: 'Only use numbers',
               },
             })}

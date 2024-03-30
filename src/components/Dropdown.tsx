@@ -1,16 +1,18 @@
 import '../style/dropdown.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, ReactNode } from 'react';
 import OutsideClickHandler from './OutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 interface DropdownProps {
+  customButton?: ReactNode | null;
+  customContent?: ReactNode | null;
   classList?: string | null;
   label?: string | null;
-  placeholder: string;
-  options: { value: string | number; label: string }[];
-  selected: { value: string | number; label: string };
-  setSelected: React.Dispatch<React.SetStateAction<Filter>>;
+  placeholder?: string;
+  options?: Filter[];
+  selected?: Filter;
+  setSelected?: React.Dispatch<React.SetStateAction<Filter>> | (() => void);
 }
 
 interface Filter {
@@ -19,12 +21,14 @@ interface Filter {
 }
 
 const Dropdown = ({
+  customButton,
+  customContent,
   classList,
   label,
-  placeholder,
-  options,
-  selected,
-  setSelected,
+  placeholder = '',
+  options = [] as Filter[],
+  selected = { value: '', label: '' },
+  setSelected = () => {},
 }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -35,26 +39,33 @@ const Dropdown = ({
   };
 
   const handleOptionClick = (value: Filter) => {
-    setSelected(value);
+    setSelected && setSelected(value);
     setIsActive(false);
   };
 
   return (
     <OutsideClickHandler onOutsideClick={handleOutsideClick}>
       <div className={'dropdown-menu ' + classList} ref={refDropdown}>
-        {label && <div className="label">{label}</div>}
-        <div
-          onClick={() => setIsActive(!isActive)}
-          className={isActive ? 'dropdown-button active' : 'dropdown-button'}
-        >
-          {selected.label || placeholder}
-          <FontAwesomeIcon className="icon" icon={faChevronDown} />
+        {label && <div className="label unselectable">{label}</div>}
+        {customButton ? (
+          <div onClick={() => setIsActive(!isActive)}>{customButton}</div>
+        ) : (
           <div
-            className={
-              isActive ? 'dropdown-options active' : 'dropdown-options'
-            }
+            onClick={() => setIsActive(!isActive)}
+            className={isActive ? 'dropdown-button active' : 'dropdown-button'}
           >
-            {options.map((option) => (
+            {selected?.label || placeholder}
+            <FontAwesomeIcon className="icon" icon={faChevronDown} />
+          </div>
+        )}
+
+        <div
+          className={isActive ? 'dropdown-options active' : 'dropdown-options'}
+        >
+          {customContent ? (
+            <div className="custom">{customContent}</div>
+          ) : (
+            (options as Filter[]).map((option: Filter) => (
               <div
                 onClick={() => handleOptionClick(option)}
                 className="dropdown-option"
@@ -62,8 +73,8 @@ const Dropdown = ({
               >
                 {option.label}
               </div>
-            ))}
-          </div>
+            ))
+          )}
         </div>
       </div>
     </OutsideClickHandler>

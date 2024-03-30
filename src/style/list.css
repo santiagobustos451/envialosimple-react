@@ -1,9 +1,14 @@
 .table-container {
   display: grid;
-  grid-template-rows: 50px 50px 1fr 50px;
+  grid-template-rows: 60px 60px 1fr 50px;
+  grid-template-columns: 200px 1fr 200px;
   background-color: var(--color-dark-transparent);
   border-radius: var(--rounded-big);
-  height: 100vh;
+  box-sizing: border-box;
+  height: calc(100% - 60px);
+  margin: 30px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .table-outline {
@@ -13,6 +18,7 @@
   box-sizing: border-box;
   margin: 0 20px;
   grid-row: 3;
+  grid-column: 1 / span 3;
   background-color: var(--color-dark-transparent);
   overflow: scroll;
 }
@@ -66,6 +72,7 @@ table td.actions {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  padding-left: 20px;
 }
 
 table th {
@@ -83,15 +90,16 @@ table tr:nth-child(odd) {
 
 .title {
   font-size: x-large;
-  font-weight: bolder;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px -4px 3px 3px var(--color-light-subdued);
+  border-bottom: 1px solid var(--color-dark-transparent);
   padding: 0 20px;
+  grid-row: 1;
+  grid-column: 1 / span 3;
 }
 
 .header-actions {
@@ -106,6 +114,8 @@ table tr:nth-child(odd) {
   justify-content: flex-end;
   padding: 0 20px;
   gap: 10px;
+  grid-row: 2;
+  grid-column: 1 / span 3;
 }
 
 .searchbar {
@@ -118,7 +128,7 @@ table tr:nth-child(odd) {
 }
 
 .searchbar input {
-  color: var(--color-dark-transparent);
+  color: var(--color-light);
   box-sizing: border-box;
   border: none;
   outline: none;
@@ -170,11 +180,40 @@ table tr:nth-child(odd) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  grid-row: 4;
+  grid-column: 1 / span 3;
+}
+
+.item-number {
+  grid-row: 4;
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginator {
+  grid-row: 4;
+  grid-column: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .counter {
   width: 160px;
   text-align: end;
+  grid-row: 4;
+  grid-column: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-button {
@@ -191,4 +230,66 @@ table tr:nth-child(odd) {
 
 .add-button path {
   fill: var(--color-light-subdued);
+}
+
+.mobile-filters {
+  display: none;
+}
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .table-container {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 0;
+  }
+
+  .table-outline {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .title {
+    margin-left: 40px;
+  }
+
+  .add-button {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .counter {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .paginator {
+    grid-column: 1 / span 3;
+  }
+
+  .item-number {
+    display: none;
+    /* grid-row: 2;
+    grid-column: 2; */
+  }
+
+  .filters {
+    display: none;
+  }
+
+  .header-actions .add-button {
+    display: none;
+  }
+
+  .mobile-filters {
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+  }
 }
