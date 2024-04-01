@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../style/paginator.css';
+import PaginatorCSS from '../../style/paginator.module.css';
 import {
   faChevronLeft,
   faChevronRight,
@@ -53,9 +53,9 @@ const Paginator = ({ currentPage, totalPages, setPage }: PaginatorProps) => {
   }, [totalPages, currentPage]);
   return (
     <>
-      <div className="paginator-container">
+      <div className={PaginatorCSS.paginatorContainer}>
         <button
-          className={currentPage === 1 ? 'disabled' : ''}
+          className={currentPage === 1 ? PaginatorCSS.disabled : ''}
           onClick={() => setPage(currentPage - 1)}
         >
           <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
@@ -66,9 +66,9 @@ const Paginator = ({ currentPage, totalPages, setPage }: PaginatorProps) => {
             onClick={() => setPage(Number(button))}
             className={
               Number(button) === currentPage
-                ? 'selected'
+                ? PaginatorCSS.selected
                 : '' + button === '...'
-                ? 'disabled'
+                ? PaginatorCSS.disabled
                 : ''
             }
           >
@@ -76,7 +76,7 @@ const Paginator = ({ currentPage, totalPages, setPage }: PaginatorProps) => {
           </button>
         ))}
         <button
-          className={currentPage === totalPages ? 'disabled' : ''}
+          className={currentPage === totalPages ? PaginatorCSS.disabled : ''}
           onClick={() => setPage(currentPage + 1)}
         >
           <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>

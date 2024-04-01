@@ -1,4 +1,4 @@
-.dropdown-menu {
+.dropdownMenu {
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -10,7 +10,7 @@
   --drop-width-short: 60px;
 }
 
-.dropdown-button {
+.dropdownButton {
   position: relative;
   box-sizing: border-box;
   width: var(--drop-width);
@@ -24,11 +24,11 @@
   user-select: none;
 }
 
-.dropdown-menu.short .dropdown-button {
+.dropdownMenu.short .dropdownButton {
   width: var(--drop-width-short);
 }
 
-.dropdown-button .icon {
+.dropdownButton .icon {
   position: absolute;
   right: 10px;
   height: 8px;
@@ -36,23 +36,23 @@
   transition: all 100ms ease-in-out;
 }
 
-.dropdown-button.active .icon {
+.dropdownButton.active .icon {
   transform: rotate(180deg);
 }
 
-.dropdown-menu.up .dropdown-button .icon {
+.dropdownMenu.up .dropdownButton .icon {
   transform: rotate(180deg);
 }
 
-.dropdown-menu.up .dropdown-button.active .icon {
+.dropdownMenu.up .dropdownButton.active .icon {
   transform: rotate(0deg);
 }
 
-.dropdown-button.active {
+.dropdownButton.active {
   outline: 1px solid var(--color-accent);
 }
 
-.dropdown-options {
+.dropdownOptions {
   width: var(--drop-width);
   position: absolute;
   top: 100%;
@@ -71,7 +71,7 @@
   z-index: 10;
 }
 
-.dropdown-options:has(.custom) {
+.dropdownOptions:has(.custom) {
   width: max-content;
   min-width: 200px;
   overflow: visible;
@@ -79,35 +79,35 @@
   margin-top: 10px;
 }
 
-.dropdown-menu.short .dropdown-options {
+.dropdownMenu.short .dropdownOptions {
   width: var(--drop-width-short);
 }
 
-.dropdown-menu.up .dropdown-options {
+.dropdownMenu.up .dropdownOptions {
   transform: translateY(20px);
   bottom: 100%;
   top: auto;
 }
 
-.dropdown-menu.up .dropdown-options.active {
+.dropdownMenu.up .dropdownOptions.active {
   transform: translateY(0);
   border-radius: var(--rounded-small) var(--rounded-small) 0 0;
 }
 
-.dropdown-options.active {
+.dropdownOptions.active {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
 }
 
-.dropdown-option {
+.dropdownOption {
   padding: 10px;
   transition: all 100ms ease-in-out;
   cursor: pointer;
   user-select: none;
 }
 
-.dropdown-option:hover {
+.dropdownOption:hover {
   background-color: var(--color-accent);
 }
 

@@ -1,5 +1,5 @@
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
-import '../../../style/form.css';
+import FormCSS from '../../../style/form.module.css';
 import { useState } from 'react';
 
 interface UserData {
@@ -54,11 +54,11 @@ function DeleteProduct({ setModalOpen, product }: DeleteProductProps) {
 
   return (
     <>
-      <div className="modal-form">
-        <div className="form-body">
+      <div className={FormCSS.modalForm}>
+        <div className={FormCSS.formBody}>
           <div>Are you sure? This action cannot be undone</div>
         </div>
-        <div className="form-footer">
+        <div className={FormCSS.formFooter}>
           <button disabled={isLoading} onClick={() => deleteProduct()}>
             Yes
           </button>

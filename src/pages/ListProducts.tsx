@@ -6,8 +6,8 @@ import Paginator from '../components/common/Paginator';
 import Modal from '../components/common/Modal';
 import FilterDropdown from '../components/common/FilterDropdown';
 import AddProduct from '../components/forms/products/AddProduct';
-import '../style/list.css';
-import '../style/base.css';
+import ListCSS from '../style/list.module.css';
+
 import {
   faAdd,
   faEdit,
@@ -143,14 +143,17 @@ function ListProducts() {
   /* JSX Rendering */
   return (
     <>
-      <div className="table-container">
+      <div className={`${ListCSS.tableContainer}`}>
         {/* Header and Searchbar */}
-        <div className="header">
-          <div className="title">Products</div>
-          <div className="header-actions">
-            <div className="searchbar">
+        <div className={`${ListCSS.header}`}>
+          <div className={`${ListCSS.title}`}>Products</div>
+          <div className={`${ListCSS.headerActions}`}>
+            <div className={`${ListCSS.searchbar}`}>
               {filter != '' && (
-                <button className="link" onClick={() => resetSearch()}>
+                <button
+                  className={`${ListCSS.link}`}
+                  onClick={() => resetSearch()}
+                >
                   Clear Search
                 </button>
               )}
@@ -161,13 +164,16 @@ function ListProducts() {
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                 />
-                <button className="search-button" type="submit">
-                  <FontAwesomeIcon className="icon" icon={faSearch} />
+                <button className={`${ListCSS.searchButton}`} type="submit">
+                  <FontAwesomeIcon
+                    className={`${ListCSS.icon}`}
+                    icon={faSearch}
+                  />
                 </button>
               </form>
             </div>
             <button
-              className="add-button"
+              className={`${ListCSS.addButton}`}
               onClick={() => setIsAddProductModalOpen(true)}
             >
               <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
@@ -177,7 +183,7 @@ function ListProducts() {
         </div>
 
         {/* Filters */}
-        <div className="filters">
+        <div className={`${ListCSS.filters}`}>
           <Dropdown
             label={'Order by'}
             placeholder="Order by"
@@ -201,7 +207,11 @@ function ListProducts() {
         </div>
 
         {/* Table */}
-        <div className={isLoading ? 'active table-outline' : 'table-outline'}>
+        <div
+          className={`${ListCSS.tableOutline} ${
+            isLoading ? ListCSS.active : ''
+          }`}
+        >
           <table>
             <thead>
               <tr>
@@ -215,7 +225,7 @@ function ListProducts() {
                 <tr key={product.name}>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td className="actions">
+                  <td className={`${ListCSS.actions}`}>
                     <button
                       onClick={() => {
                         setIsEditProductModalOpen(true);
@@ -237,17 +247,20 @@ function ListProducts() {
               ))}
             </tbody>
           </table>
-          <div className={isLoading ? 'active loading' : 'loading'}>
+          <div
+            className={`${ListCSS.loading} ${isLoading ? ListCSS.active : ''}`}
+          >
             Loading...
           </div>
         </div>
 
         {/* Page Navigator */}
         <>
-          <div className="item-number">
+          <div className={`${ListCSS.itemNumber}`}>
             <Dropdown
               label="Items per page"
-              classList="short up"
+              isShort={true}
+              isUp={true}
               placeholder="Limit"
               options={[
                 { label: '1', value: '1' },
@@ -260,14 +273,14 @@ function ListProducts() {
               selected={limit}
             ></Dropdown>
           </div>
-          <div className="paginator">
+          <div className={`${ListCSS.paginator}`}>
             <Paginator
               currentPage={page}
               totalPages={totalPages}
               setPage={setPage}
             ></Paginator>
           </div>
-          <div className="counter unselectable">
+          <div className={`${ListCSS.counter} unselectable`}>
             Showing {page * Number(limit.value) - Number(limit.value) + 1}-
             {Math.min(page * Number(limit.value), totalProducts)} of{' '}
             {totalProducts}
@@ -276,21 +289,21 @@ function ListProducts() {
 
         {/* Mobile filters */}
         <>
-          <div className="mobile-filters">
+          <div className={`${ListCSS.mobileFilters}`}>
             <button
-              className="add-button"
+              className={`${ListCSS.addButton}`}
               onClick={() => setIsAddProductModalOpen(true)}
             >
               <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
             </button>
             <Dropdown
               customButton={
-                <button className="add-button">
+                <button className={`${ListCSS.addButton}`}>
                   <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
                 </button>
               }
               customContent={
-                <div className="filter-menu">
+                <div className={`${ListCSS.filterMenu}`}>
                   <FilterDropdown
                     filterLabel="Order by"
                     states={[

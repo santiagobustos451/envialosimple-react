@@ -1,4 +1,4 @@
-.login-container {
+.loginContainer {
   height: 100dvh;
   width: 100dvw;
   overflow: hidden;
@@ -8,14 +8,14 @@
   background-color: var(--color-dark);
 }
 
-.login-window {
+.loginWindow {
   display: flex;
   height: 400px;
   width: 400px;
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
-.login-window > * {
+.loginWindow > * {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
   gap: 10px;
 }
 
-.login-form {
+.loginForm {
   display: flex;
   padding: 20px;
   background-color: var(--color-dark-subdued);
@@ -48,15 +48,15 @@ form {
   gap: 10px;
 }
 
-.form-footer {
+.formFooter {
   align-self: flex-end;
 }
 
-.password-field {
+.passwordField {
   position: relative;
 }
 
-.password-field input {
+.passwordField input {
   box-sizing: border-box;
   width: 100%;
 }
@@ -66,7 +66,7 @@ input {
   height: 36px;
 }
 
-.password-field .show-password {
+.passwordField .showPassword {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -86,12 +86,12 @@ input {
     height: 48px;
   }
 
-  .password-field .show-password {
+  .passwordField .showPassword {
     height: 48px;
     width: 48px;
   }
 
-  .login-window {
+  .loginWindow {
     position: absolute;
     flex-direction: column;
     top: 0;
@@ -102,7 +102,7 @@ input {
     height: 100dvh;
   }
 
-  .login-window > * {
+  .loginWindow > * {
     width: 100%;
   }
 
@@ -110,21 +110,21 @@ input {
     margin: 0;
   }
 
-  .login-form {
+  .loginForm {
     justify-content: flex-start;
     background-color: var(--color-dark-subdued);
     align-items: flex-start;
   }
 
-  .login-form form {
+  .loginForm form {
     width: 100%;
   }
 
-  .login-form * {
+  .loginForm * {
     font-size: large;
   }
 
-  .login-form button {
+  .loginForm button {
     padding: 20px;
     font-size: large;
   }

@@ -1,4 +1,4 @@
-.gui {
+.nav {
   display: grid;
   grid-template-rows: 60px 1fr;
   height: 100dvh;
@@ -9,26 +9,26 @@
   margin: 0 300px;
 }
 
-.nav-bar {
+.navBar {
   background-color: var(--color-dark);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav-toggle {
+.navToggle {
   display: none;
   font-size: xx-large;
 }
 
-.user-options {
+.userOptions {
   display: flex;
   gap: 20px;
   align-items: center;
   padding: 20px;
 }
 
-.isotipo {
+.isotype {
   box-sizing: border-box;
   height: 100%;
   font-size: xx-large;
@@ -47,24 +47,24 @@
 
 @media screen and (max-width: 767px) {
   .content {
-    height: 100dvh;
+    height: calc(100dvh - 60px);
   }
 
   .gui {
     grid-template-rows: 0px 1fr;
   }
 
-  .isotipo {
+  .isotype {
     height: auto;
     width: min-content;
   }
 
-  .user-options {
+  .userOptions {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .nav-bar {
+  .navBar {
     box-sizing: border-box;
     opacity: 0;
     transform: translateX(-100px);
@@ -82,12 +82,12 @@
     transition: all 100ms ease-in-out;
   }
 
-  .nav-bar button {
+  .navBar button {
     font-size: large;
     padding: 10px;
   }
 
-  .nav-bar.active {
+  .navBar.active {
     display: block;
     transform: translateX(0);
     pointer-events: all;
@@ -95,7 +95,7 @@
     z-index: 1000;
   }
 
-  .nav-toggle {
+  .navToggle {
     display: block;
     position: absolute;
     top: 15px;
@@ -112,17 +112,17 @@
     grid-template-rows: 0px 1fr;
   }
 
-  .isotipo {
+  .isotype {
     height: auto;
     width: min-content;
   }
 
-  .user-options {
+  .userOptions {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .nav-bar {
+  .navBar {
     box-sizing: border-box;
     opacity: 0;
     transform: translateX(-100px);
@@ -140,12 +140,12 @@
     transition: all 100ms ease-in-out;
   }
 
-  .nav-bar button {
+  .navBar button {
     font-size: large;
     padding: 10px;
   }
 
-  .nav-bar.active {
+  .navBar.active {
     display: block;
     transform: translateX(0);
     pointer-events: all;
@@ -153,7 +153,7 @@
     z-index: 1000;
   }
 
-  .nav-toggle {
+  .navToggle {
     display: block;
     position: absolute;
     top: 15px;

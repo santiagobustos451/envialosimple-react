@@ -1,9 +1,9 @@
-.paginator-container {
+.paginatorContainer {
   display: flex;
   gap: 10px;
 }
 
-.paginator-container button {
+.paginatorContainer button {
   color: var(--color-light);
   background-color: transparent;
   border: none;
@@ -15,20 +15,20 @@
   padding: 6px;
 }
 
-.paginator-container button:hover {
+.paginatorContainer button:hover {
   background-color: var(--color-dark-transparent);
 }
 
-.paginator-container button.long {
+.paginatorContainer button.long {
   width: 60px;
 }
 
-.paginator-container button.disabled {
+.paginatorContainer button.disabled {
   pointer-events: none;
-  color: var(--color-dark-subdued);
+  color: var(--color-light-subdued);
 }
 
-.paginator-container button.selected {
+.paginatorContainer button.selected {
   background-color: var(--color-accent-dark);
   color: var(--color-light);
 }

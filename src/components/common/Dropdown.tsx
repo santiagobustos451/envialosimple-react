@@ -1,13 +1,14 @@
-import '../../style/dropdown.css';
+import DropdownCSS from '../../style/dropdown.module.css';
 import { useState, useRef, ReactNode } from 'react';
 import OutsideClickHandler from './OutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 interface DropdownProps {
+  isShort?: boolean;
+  isUp?: boolean;
   customButton?: ReactNode | null;
   customContent?: ReactNode | null;
-  classList?: string | null;
   label?: string | null;
   placeholder?: string;
   options?: Filter[];
@@ -21,9 +22,10 @@ interface Filter {
 }
 
 const Dropdown = ({
+  isUp,
+  isShort,
   customButton,
   customContent,
-  classList,
   label,
   placeholder = '',
   options = [] as Filter[],
@@ -45,30 +47,46 @@ const Dropdown = ({
 
   return (
     <OutsideClickHandler onOutsideClick={handleOutsideClick}>
-      <div className={'dropdown-menu ' + classList} ref={refDropdown}>
-        {label && <div className="label unselectable">{label}</div>}
+      <div
+        className={`${DropdownCSS.dropdownMenu} ${
+          isShort && DropdownCSS.short
+        } ${isUp && DropdownCSS.up}`}
+        ref={refDropdown}
+      >
+        {label && (
+          <div className={`${DropdownCSS.label} ${DropdownCSS.unselectable}`}>
+            {label}
+          </div>
+        )}
         {customButton ? (
           <div onClick={() => setIsActive(!isActive)}>{customButton}</div>
         ) : (
           <div
             onClick={() => setIsActive(!isActive)}
-            className={isActive ? 'dropdown-button active' : 'dropdown-button'}
+            className={`${DropdownCSS.dropdownButton} ${
+              isActive && DropdownCSS.active
+            }`}
           >
             {selected?.label || placeholder}
-            <FontAwesomeIcon className="icon" icon={faChevronDown} />
+            <FontAwesomeIcon
+              className={DropdownCSS.icon}
+              icon={faChevronDown}
+            />
           </div>
         )}
 
         <div
-          className={isActive ? 'dropdown-options active' : 'dropdown-options'}
+          className={`${DropdownCSS.dropdownOptions} ${
+            isActive && DropdownCSS.active
+          }`}
         >
           {customContent ? (
-            <div className="custom">{customContent}</div>
+            <div className={DropdownCSS.custom}>{customContent}</div>
           ) : (
             (options as Filter[]).map((option: Filter) => (
               <div
                 onClick={() => handleOptionClick(option)}
-                className="dropdown-option"
+                className={DropdownCSS.dropdownOption}
                 key={option.value}
               >
                 {option.label}

@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
-import '../../style/modal.css';
+import ModalCSS from '../../style/modal.module.css';
 
 interface ModalProps {
   title: string;
@@ -16,11 +16,14 @@ const Modal = ({ children, title, isOpen, setIsOpen }: ModalProps) => {
 
   return createPortal(
     <>
-      <div className="modal-container">
-        <div className={isOpen ? 'modal-window active' : 'modal-window'}>
-          <div className="modal-header">
-            <div className="title">{title}</div>
-            <button onClick={() => setIsOpen(false)} className="close-button">
+      <div className={ModalCSS.modalContainer}>
+        <div className={`${ModalCSS.modalWindow} ${isOpen && ModalCSS.active}`}>
+          <div className={ModalCSS.modalHeader}>
+            <div className={ModalCSS.title}>{title}</div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className={ModalCSS.closeButton}
+            >
               <FontAwesomeIcon icon={faX}></FontAwesomeIcon>
             </button>
           </div>
@@ -29,7 +32,7 @@ const Modal = ({ children, title, isOpen, setIsOpen }: ModalProps) => {
         </div>
       </div>
       <div
-        className={isOpen ? 'overlay active' : 'overlay'}
+        className={`${ModalCSS.overlay} ${isOpen && ModalCSS.active}`}
         onClick={() => setIsOpen(false)}
       ></div>
     </>,

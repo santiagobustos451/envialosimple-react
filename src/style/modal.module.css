@@ -12,7 +12,7 @@
   backdrop-filter: blur(5px);
 }
 
-.modal-container {
+.modalContainer {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -30,7 +30,7 @@
   pointer-events: auto;
 }
 
-.modal-window {
+.modalWindow {
   position: relative;
   background-color: var(--color-dark);
   border-radius: var(--rounded-small);
@@ -47,27 +47,27 @@
   padding: 0 20px;
 }
 
-.modal-window.active {
+.modalWindow.active {
   opacity: 1;
   transform: translateY(0px);
   pointer-events: all;
 }
 
-.modal-window .close-button {
+.modalWindow .closeButton {
   background-color: transparent;
   border-radius: var(--rounded-small);
   border: none;
 }
 
-.modal-window .close-button:hover {
+.modalWindow .closeButton:hover {
   background-color: var(--color-dark-transparent);
 }
 
-.modal-window .close-button path {
+.modalWindow .closeButton path {
   fill: var(--color-light-subdued);
 }
 
-.modal-header {
+.modalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,7 +76,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .modal-window {
+  .modalWindow {
     width: 100vw;
     box-sizing: border-box;
     border-radius: 0;

@@ -7,9 +7,10 @@ import AuthProvider from 'react-auth-kit';
 import RequireAuth from '@auth-kit/react-router/RequireAuth';
 import createStore from 'react-auth-kit/createStore';
 import Login from './pages/Login.tsx';
-import GUI from './components/common/GUI.tsx';
+import GUI from './components/common/Nav.tsx';
 import RouteError from './pages/RouteError.tsx';
 import './index.css';
+import './style/base.css';
 import ListProducts from './pages/ListProducts.tsx';
 
 const router = createBrowserRouter([

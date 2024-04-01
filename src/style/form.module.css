@@ -1,83 +1,85 @@
 /* 
 Form format
 
-.modal-form
-  .form-body
-    .form-field
+.modalForm
+  .formBody
+    .formField
       input
       label
       .form-error
 
-  .form-footer
+  .formFooter
     button
 */
 
-.modal-form {
+.modalForm {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 60px;
+  grid-template-rows: 1fr 30px;
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
   height: 100%;
 }
 
-.modal-form .form-body {
+.modalForm .formBody {
   grid-row: 1;
 }
 
-.modal-form .form-footer {
+.modalForm .formFooter {
   grid-row: 2;
 }
 
-.modal-form .form-body {
+.modalForm .formBody {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-bottom: 20px;
 }
 
-.modal-form .form-footer {
+.modalForm .formFooter {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
-.form-line {
+.formLine {
   display: flex;
   gap: 10px;
 }
 
-.form-field {
+.formField {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
 }
 
-.form-field input {
+.formField input {
   background-color: var(--color-dark);
   color: var(--color-light);
   padding: 10px;
   border: solid 1px var(--color-accent-dark);
   border-radius: var(--rounded-small);
   width: 100%;
+  box-sizing: border-box;
 }
 
-.form-field label {
+.formField label {
   order: -1;
   color: var(--color-light-subdued);
 }
 
-.form-field input:focus {
+.formField input:focus {
   border-color: var(--color-accent);
   outline: solid 1px var(--color-accent);
 }
 
-.form-field input:focus + label {
+.formField input:focus + label {
   color: var(--color-accent);
 }
 
-.form-error {
+.formError {
   color: var(--color-error);
   font-size: small;
 }

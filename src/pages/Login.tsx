@@ -1,11 +1,12 @@
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import '../style/login.css';
+import LoginCSS from '../style/login.module.css';
+import FormCSS from '../style/form.module.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import Logo from '../components/svg/Logotipo';
+import Logotype from '../components/svg/Logotype';
 
 type FormFields = {
   username: string;
@@ -71,19 +72,19 @@ function Login() {
   /* JSX Render */
   return (
     <>
-      <div className="login-container">
-        <div className="login-window">
-          <div className="info">
-            Welcome to <div className="title">Product List</div>
+      <div className={LoginCSS.loginContainer}>
+        <div className={LoginCSS.loginWindow}>
+          <div className={LoginCSS.info}>
+            Welcome to <div className={LoginCSS.title}>Product List</div>
           </div>
-          <div className="login-form">
-            <div className="logo">
-              <Logo></Logo>
+          <div className={LoginCSS.loginForm}>
+            <div className={LoginCSS.logo}>
+              <Logotype></Logotype>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} action="">
-              <div className="form-field">
+              <div className={FormCSS.formField}>
                 <input
-                  className="form-field"
+                  className={FormCSS.formField}
                   {...register('username', {
                     required: 'This field is required',
                   })}
@@ -91,10 +92,12 @@ function Login() {
                   placeholder="Username"
                 />
                 {errors.username && (
-                  <div className="form-error">{errors.username.message}</div>
+                  <div className={FormCSS.formError}>
+                    {errors.username.message}
+                  </div>
                 )}
               </div>
-              <div className="password-field form-field">
+              <div className={`${LoginCSS.passwordField} ${FormCSS.formField}`}>
                 <input
                   className=""
                   {...register('password', {
@@ -105,7 +108,7 @@ function Login() {
                 />
                 <div
                   onClick={() => setPasswordVisible(!passwordVisible)}
-                  className="show-password"
+                  className={LoginCSS.showPassword}
                 >
                   {passwordVisible ? (
                     <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon>
@@ -114,13 +117,15 @@ function Login() {
                   )}
                 </div>
                 {errors.password && (
-                  <div className="form-error">{errors.password.message}</div>
+                  <div className={FormCSS.formError}>
+                    {errors.password.message}
+                  </div>
                 )}
               </div>
               {errors.root && (
-                <div className="form-error">{errors.root.message}</div>
+                <div className={FormCSS.formError}>{errors.root.message}</div>
               )}
-              <div className="form-footer">
+              <div className={LoginCSS.formFooter}>
                 <button disabled={isSubmitting} type="submit">
                   {isSubmitting ? 'Loading...' : 'Log In'}
                 </button>

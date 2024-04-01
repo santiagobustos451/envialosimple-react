@@ -1,6 +1,6 @@
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import '../../../style/form.css';
+import FormCSS from '../../../style/form.module.css';
 import { useEffect } from 'react';
 
 type FormFields = {
@@ -82,22 +82,22 @@ function EditProduct({ isOpen, setModalOpen, product }: EditProductProps) {
 
   return (
     <>
-      <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-body">
-          <div className="form-field">
+      <form className={FormCSS.modalForm} onSubmit={handleSubmit(onSubmit)}>
+        <div className={FormCSS.formBody}>
+          <div className={FormCSS.formField}>
             <input
               {...register('name', {
                 required: 'This field is required',
               })}
-              className="form-field"
+              className={FormCSS.formField}
               type="text"
             />
             <label>Name</label>
             {errors.name && (
-              <div className="form-error">{errors.name.message}</div>
+              <div className={FormCSS.formError}>{errors.name.message}</div>
             )}
           </div>
-          <div className="form-field">
+          <div className={FormCSS.formField}>
             <input
               {...register('price', {
                 required: 'This field is required',
@@ -106,21 +106,21 @@ function EditProduct({ isOpen, setModalOpen, product }: EditProductProps) {
                   message: 'Only use numbers',
                 },
               })}
-              className="form-field"
+              className={FormCSS.formField}
               type="text"
             />
             <label>Price</label>
             {errors.price && (
-              <div className="form-error">{errors.price.message}</div>
+              <div className={FormCSS.formError}>{errors.price.message}</div>
             )}
           </div>
-          <div className="form-errors">
+          <div className={FormCSS.formError}>
             {errors.root && (
-              <div className="form-error">{errors.root.message}</div>
+              <div className={FormCSS.formError}>{errors.root.message}</div>
             )}
           </div>
         </div>
-        <div className="form-footer">
+        <div className={FormCSS.formFooter}>
           <button disabled={isSubmitting} type="submit">
             Submit
           </button>
