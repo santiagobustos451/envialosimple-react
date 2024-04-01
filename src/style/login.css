@@ -18,6 +18,7 @@
 .login-window > * {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50%;
@@ -34,9 +35,11 @@
 }
 
 .login-form {
+  display: flex;
   padding: 20px;
   background-color: var(--color-dark-subdued);
   flex: 2;
+  gap: 20px;
 }
 
 form {
@@ -74,7 +77,11 @@ input {
   top: 0;
 }
 
-@media screen and (max-width: 1100px) {
+.logo {
+  height: fit-content;
+}
+
+@media screen and (max-width: 767px) {
   input {
     height: 48px;
   }
@@ -104,7 +111,8 @@ input {
   }
 
   .login-form {
-    background-color: var(--color-dark);
+    justify-content: flex-start;
+    background-color: var(--color-dark-subdued);
     align-items: flex-start;
   }
 

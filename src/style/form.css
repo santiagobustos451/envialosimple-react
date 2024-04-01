@@ -1,55 +1,83 @@
-input.form-field {
-  padding: 10px;
-  border: none;
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  border-radius: var(--rounded-small);
-}
+/* 
+Form format
 
-input.form-field:focus {
-  outline: 1px solid var(--color-accent-dark);
-}
+.modal-form
+  .form-body
+    .form-field
+      input
+      label
+      .form-error
+
+  .form-footer
+    button
+*/
 
 .modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 60px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
   height: 100%;
-  justify-content: space-between;
+}
+
+.modal-form .form-body {
+  grid-row: 1;
+}
+
+.modal-form .form-footer {
+  grid-row: 2;
 }
 
 .modal-form .form-body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex: 1;
-}
-
-.modal-form .title {
-  font-size: large;
-  margin-bottom: 10px;
+  gap: 15px;
 }
 
 .modal-form .form-footer {
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
   gap: 10px;
+}
+
+.form-line {
+  display: flex;
+  gap: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.form-field input {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  padding: 10px;
+  border: solid 1px var(--color-accent-dark);
+  border-radius: var(--rounded-small);
+  width: 100%;
+}
+
+.form-field label {
+  order: -1;
+  color: var(--color-light-subdued);
+}
+
+.form-field input:focus {
+  border-color: var(--color-accent);
+  outline: solid 1px var(--color-accent);
+}
+
+.form-field input:focus + label {
+  color: var(--color-accent);
 }
 
 .form-error {
   color: var(--color-error);
-  margin-top: -10px;
-}
-
-.modal-form button {
-  padding: 10px;
-  font-size: medium;
-}
-
-.modal-form .form-line {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
+  font-size: small;
 }

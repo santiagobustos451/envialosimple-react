@@ -28,7 +28,7 @@
   padding: 20px;
 }
 
-.logo {
+.isotipo {
   box-sizing: border-box;
   height: 100%;
   font-size: xx-large;
@@ -36,6 +36,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 1400px) {
@@ -53,7 +54,7 @@
     grid-template-rows: 0px 1fr;
   }
 
-  .logo {
+  .isotipo {
     height: auto;
     width: min-content;
   }
@@ -111,7 +112,7 @@
     grid-template-rows: 0px 1fr;
   }
 
-  .logo {
+  .isotipo {
     height: auto;
     width: min-content;
   }

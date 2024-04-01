@@ -1,6 +1,6 @@
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import '../style/form.css';
+import '../../../style/form.css';
 import { useEffect } from 'react';
 
 type FormFields = {
@@ -13,26 +13,35 @@ interface UserData {
   token: string;
 }
 
-interface AddProductProps {
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpen: boolean;
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
 }
 
-function AddProduct({ isOpen, setModalOpen }: AddProductProps) {
+interface EditProductProps {
+  isOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  product: Product;
+}
+
+function EditProduct({ isOpen, setModalOpen, product }: EditProductProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
+    setValue,
     reset,
   } = useForm<FormFields>();
 
-  const apiUrl = '/api/products/add';
+  const apiUrl = `/api/products/edit/${product._id}`;
   const auth = useAuthUser<UserData>();
   const token = auth?.token || '';
 
   useEffect(() => {
-    reset();
+    setValue('name', product.name);
+    setValue('price', String(product.price));
   }, [isOpen]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -74,39 +83,42 @@ function AddProduct({ isOpen, setModalOpen }: AddProductProps) {
   return (
     <>
       <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="title">Add product</div>
         <div className="form-body">
-          <input
-            {...register('name', {
-              required: 'This field is required',
-            })}
-            className="form-field"
-            type="text"
-            placeholder="Name"
-          />
-          {errors.name && (
-            <div className="form-error">{errors.name.message}</div>
-          )}
-          <input
-            {...register('price', {
-              required: 'This field is required',
-              pattern: {
-                value: /^\d+(\.\d+|)$/,
-                message: 'Only use numbers',
-              },
-            })}
-            className="form-field"
-            type="text"
-            placeholder="Price"
-          />
-          {errors.price && (
-            <div className="form-error">{errors.price.message}</div>
-          )}
-        </div>
-        <div className="form-errors">
-          {errors.root && (
-            <div className="form-error">{errors.root.message}</div>
-          )}
+          <div className="form-field">
+            <input
+              {...register('name', {
+                required: 'This field is required',
+              })}
+              className="form-field"
+              type="text"
+            />
+            <label>Name</label>
+            {errors.name && (
+              <div className="form-error">{errors.name.message}</div>
+            )}
+          </div>
+          <div className="form-field">
+            <input
+              {...register('price', {
+                required: 'This field is required',
+                pattern: {
+                  value: /^\d+(\.\d+|)$/,
+                  message: 'Only use numbers',
+                },
+              })}
+              className="form-field"
+              type="text"
+            />
+            <label>Price</label>
+            {errors.price && (
+              <div className="form-error">{errors.price.message}</div>
+            )}
+          </div>
+          <div className="form-errors">
+            {errors.root && (
+              <div className="form-error">{errors.root.message}</div>
+            )}
+          </div>
         </div>
         <div className="form-footer">
           <button disabled={isSubmitting} type="submit">
@@ -118,4 +130,4 @@ function AddProduct({ isOpen, setModalOpen }: AddProductProps) {
   );
 }
 
-export default AddProduct;
+export default EditProduct;

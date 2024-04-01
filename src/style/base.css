@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
-  --color-light: #d4d6d7;
-  --color-light-subdued: #ffffff64;
-  --color-dark: #2a363b;
-  --color-dark-subdued: rgb(111, 122, 128);
-  --color-dark-transparent: #2a363bc8;
-  --color-accent: #ff847c;
-  --color-accent-dark: #e84a5f;
-  --color-link: #fecea8;
-  --color-visited: #e84a5f;
-  --color-error: #e4213b;
+  --color-light: #fafafa;
+  --color-light-subdued: #a5b3cf;
+  --color-light-transparent: #6b7488;
+  --color-dark: #121418;
+  --color-dark-subdued: #353b47;
+  --color-dark-transparent: #1b1e24;
+  --color-accent: #00d9a2;
+  --color-accent-dark: #009771;
+  --color-link: #eefea8;
+  --color-visited: #b9e84a;
+  --color-error: #e06666;
 
-  --rounded-big: 1rem;
-  --rounded-small: 0.3rem;
+  --rounded-big: 10px;
+  --rounded-small: 3px;
 
   color: var(--color-light);
   background-color: var(--color-dark-transparent);
@@ -26,8 +27,10 @@ button {
   border: none;
   background-color: var(--color-accent-dark);
   color: var(--color-light);
-  padding: 6px;
+  padding: 6px 10px;
   border-radius: var(--rounded-small);
+  font-size: medium;
+  font-family: Roboto;
 }
 
 button:hover {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import OutsideClickHandler from './OutsideClickHandler';
 import Dropdown from './Dropdown';
-import '../style/filters.css';
+import '../../style/filters.css';
 
 interface FilterDropdownProps {
   filterLabel: string;

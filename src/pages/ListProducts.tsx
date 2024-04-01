@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Dropdown from '../components/Dropdown';
-import Paginator from '../components/Paginator';
-import Modal from '../components/Modal';
-import FilterDropdown from '../components/FilterDropdown';
-import AddProduct from '../components/AddProduct';
+import Dropdown from '../components/common/Dropdown';
+import Paginator from '../components/common/Paginator';
+import Modal from '../components/common/Modal';
+import FilterDropdown from '../components/common/FilterDropdown';
+import AddProduct from '../components/forms/products/AddProduct';
 import '../style/list.css';
 import '../style/base.css';
 import {
@@ -15,8 +15,8 @@ import {
   faSearch,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import EditProduct from '../components/EditProduct';
-import DeleteProduct from '../components/DeleteProduct';
+import EditProduct from '../components/forms/products/EditProduct';
+import DeleteProduct from '../components/forms/products/DeleteProduct';
 
 interface UserData {
   username: string;
@@ -335,6 +335,7 @@ function ListProducts() {
         </>
       </div>
       <Modal
+        title="Add Product"
         isOpen={isAddProductModalOpen}
         setIsOpen={setIsAddProductModalOpen}
       >
@@ -344,6 +345,7 @@ function ListProducts() {
         ></AddProduct>
       </Modal>
       <Modal
+        title="Edit Product"
         isOpen={isEditProductModalOpen}
         setIsOpen={setIsEditProductModalOpen}
       >
@@ -354,6 +356,7 @@ function ListProducts() {
         ></EditProduct>
       </Modal>
       <Modal
+        title="Deleting Product"
         isOpen={isDeleteProductModalOpen}
         setIsOpen={setIsDeleteProductModalOpen}
       >

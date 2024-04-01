@@ -15,7 +15,7 @@
   box-sizing: border-box;
   width: var(--drop-width);
   padding: 10px;
-  background-color: var(--color-light-subdued);
+  background-color: var(--color-light-transparent);
   border-radius: var(--rounded-small);
   display: flex;
   justify-content: flex-start;

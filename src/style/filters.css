@@ -5,10 +5,11 @@
   flex-direction: column;
   border-radius: var(--rounded-small);
   font-size: large;
+  background-color: var(--color-dark-transparent);
 }
 
 .filter-menu > * {
-  border-bottom: solid 1px var(--color-light-subdued);
+  border-bottom: solid 1px var(--color-dark-transparent);
 }
 
 .filter-menu > *:last-child {
@@ -16,6 +17,7 @@
 }
 
 .filter-button {
+  color: var(--color-light);
   display: flex;
   padding: 20px;
   flex-direction: column;

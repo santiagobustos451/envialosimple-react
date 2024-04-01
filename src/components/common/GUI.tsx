@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react';
-import '../style/gui.css';
+import '../../style/gui.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faProductHunt } from '@fortawesome/free-brands-svg-icons';
+import Isotipo from '../svg/Isotipo';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
-import SignOutButton from './SignOutButton';
+import SignOutButton from '../auth/SignOutButton';
 import OutsideClickHandler from './OutsideClickHandler';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,8 +28,8 @@ const GUI = ({ children }: GUIProps) => {
       </div>
       <OutsideClickHandler onOutsideClick={() => setNavOpen(false)}>
         <div className={navOpen ? 'nav-bar active' : 'nav-bar'}>
-          <div className="logo">
-            <FontAwesomeIcon icon={faProductHunt}></FontAwesomeIcon>
+          <div className="isotipo">
+            <Isotipo></Isotipo>
           </div>
           <div className="user-options">
             <div className="message">You are logged in as {username}</div>

@@ -1,4 +1,4 @@
-import '../style/dropdown.css';
+import '../../style/dropdown.css';
 import { useState, useRef, ReactNode } from 'react';
 import OutsideClickHandler from './OutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

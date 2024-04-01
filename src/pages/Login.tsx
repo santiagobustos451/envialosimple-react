@@ -5,6 +5,7 @@ import '../style/login.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Logo from '../components/svg/Logotipo';
 
 type FormFields = {
   username: string;
@@ -40,6 +41,10 @@ function Login() {
             setError('root', {
               message: 'Invalid Credentials',
             });
+          } else {
+            setError('root', {
+              message: 'Something went wrong - Try again later',
+            });
           }
           throw new Error('Network response was not ok');
         }
@@ -72,20 +77,29 @@ function Login() {
             Welcome to <div className="title">Product List</div>
           </div>
           <div className="login-form">
+            <div className="logo">
+              <Logo></Logo>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} action="">
-              <input
-                className="form-field"
-                {...register('username')}
-                type="text"
-                placeholder="Username"
-              />
-              {errors.username && (
-                <div className="form-error">{errors.username.message}</div>
-              )}
-              <div className="password-field form-field">
+              <div className="form-field">
                 <input
                   className="form-field"
-                  {...register('password')}
+                  {...register('username', {
+                    required: 'This field is required',
+                  })}
+                  type="text"
+                  placeholder="Username"
+                />
+                {errors.username && (
+                  <div className="form-error">{errors.username.message}</div>
+                )}
+              </div>
+              <div className="password-field form-field">
+                <input
+                  className=""
+                  {...register('password', {
+                    required: 'This field is required',
+                  })}
                   type={passwordVisible ? 'text' : 'password'}
                   placeholder="Password"
                 />
