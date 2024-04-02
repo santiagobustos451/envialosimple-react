@@ -9,7 +9,7 @@ Este documento proporciona una guía detallada sobre el desarrollo de la aplicac
 Requisitos previos: Para ejecutar esta aplicación correctamente, asegurarse de que Docker esté instalado y sea accesible desde la línea de comandos.
 
 1. **Clonar el repositorio:**
-   Clonar el repositorio de tu proyecto.
+   Clonar el repositorio del proyecto.
 
 2. **Navegar al directorio del proyecto:**
    Abrir una terminal y navegar hasta el directorio raíz del proyecto.
@@ -28,18 +28,18 @@ docker build -t envialosimple-react:v1.0 .
 docker run -p 8080:8080 envialosimple-react:v1.0
 ```
 
-Este comando ejecutará el contenedor y mapeará el puerto 8080 del contenedor al puerto 8080 de tu máquina local.
+Este comando ejecutará el contenedor y mapeará el puerto 8080 del contenedor al puerto 8080 localmente.
 
 5. **Acceder a la aplicación:**
    Después de ejecutar el contenedor, abrir un navegador web y navegar a http://localhost:8080. Deberías ver la aplicación ejecutándose.
 
-Siguiendo estos pasos, la aplicación debería estar funcionando correctamente en tu máquina local en el puerto 8080.
+Siguiendo estos pasos, la aplicación debería estar funcionando correctamente en su máquina local en el puerto 8080.
 
 ### Estructura del Proyecto:
 
 El proyecto está organizado en las siguientes carpetas principales:
 
-1. **src**: Esta carpeta es el núcleo del proyecto y contiene todos los archivos relacionados con el desarrollo de la aplicación.
+- **src**: Esta carpeta es el núcleo del proyecto y contiene todos los archivos relacionados con el desarrollo de la aplicación.
 
    - **assets**: Aquí se almacenan los recursos estáticos utilizados en la aplicación, como archivos SVG u otros recursos multimedia.
 
@@ -59,6 +59,7 @@ El proyecto está organizado en las siguientes carpetas principales:
 
 ### Diagrama de la Estructura de Carpetas:
 
+```
 src
 │
 ├── assets
@@ -90,6 +91,7 @@ src
 └── style
 ├── base.css
 └── ...
+```
 
 ### Funcionalidades Principales:
 
@@ -174,7 +176,7 @@ En este proyecto, los estilos CSS están organizados de manera modular y coheren
 
 - **Archivos .module.css asociados a cada componente**: Los estilos específicos de cada componente se encuentran en archivos CSS modulares asociados directamente con cada componente React. Esto ayuda a evitar conflictos de estilos y facilita la comprensión del alcance de los estilos en cada componente.
 
-- **Formato de clases**: Las clases CSS siguen el formato snakeCase para una mejor legibilidad y consistencia en todo el código. Esto facilita la identificación de clases y su asociación con componentes específicos.
+- **Formato de clases**: Las clases CSS siguen el formato snakeCase para facilitar su integración en el código mediante el uso de módulos CSS.
 
 - **Media Queries para diseño responsivo**: Se utilizan media queries para aplicar estilos específicos según el tamaño de la pantalla, garantizando una experiencia de usuario consistente en diferentes dispositivos y resoluciones.
 
