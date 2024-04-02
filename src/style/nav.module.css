@@ -10,7 +10,7 @@
 }
 
 .navBar {
-  background-color: var(--color-dark);
+  background-color: var(--color-dark-1);
   display: flex;
   justify-content: space-between;
   align-items: center;

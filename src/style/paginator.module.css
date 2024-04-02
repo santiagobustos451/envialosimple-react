@@ -4,7 +4,7 @@
 }
 
 .paginatorContainer button {
-  color: var(--color-light);
+  color: var(--color-light-1);
   background-color: transparent;
   border: none;
   border-radius: var(--rounded-small);
@@ -16,7 +16,7 @@
 }
 
 .paginatorContainer button:hover {
-  background-color: var(--color-dark-transparent);
+  background-color: var(--color-dark-2);
 }
 
 .paginatorContainer button.long {
@@ -25,10 +25,10 @@
 
 .paginatorContainer button.disabled {
   pointer-events: none;
-  color: var(--color-light-subdued);
+  color: var(--color-light-2);
 }
 
 .paginatorContainer button.selected {
   background-color: var(--color-accent-dark);
-  color: var(--color-light);
+  color: var(--color-light-1);
 }

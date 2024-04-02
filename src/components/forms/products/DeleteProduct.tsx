@@ -26,30 +26,33 @@ function DeleteProduct({ setModalOpen, product }: DeleteProductProps) {
   const token = auth?.token || '';
 
   const deleteProduct = async () => {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response);
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((responseData) => {
-        setIsLoading(false);
-        setModalOpen(false);
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       });
+
+      if (!response.ok) {
+        console.error(
+          'Failed to delete product. Server responded with status:',
+          response.status
+        );
+        throw new Error('Network response was not ok');
+      }
+
+      const responseData = await response.json();
+      setIsLoading(false);
+      setModalOpen(false);
+      console.log(responseData);
+    } catch (error) {
+      console.error('There was a problem with the delete operation:', error);
+      alert('Failed to delete product. Please try again later.');
+    }
   };
 
   return (

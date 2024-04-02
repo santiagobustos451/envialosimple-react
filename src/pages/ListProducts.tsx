@@ -73,42 +73,43 @@ function ListProducts() {
   const fetchProducts = async () => {
     setIsLoading(true);
 
-    const queryParams = new URLSearchParams({
-      page: String(page),
-      limit: String(limit.value),
-      filterName: filter,
-      orderby: String(orderBy.value),
-      order: String(order.value),
-    });
-    const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
-    console.log(urlWithParams);
-
-    await fetch(urlWithParams, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((responseData) => {
-        setIsLoading(false);
-        setProducts(responseData.result.payload);
-        setTotalPages(responseData.result.pages);
-        setTotalProducts(responseData.result.total);
-
-        console.log(products);
-        return responseData;
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error('There was a problem with the fetch operation:', error);
+    try {
+      const queryParams = new URLSearchParams({
+        page: String(page),
+        limit: String(limit.value),
+        filterName: filter,
+        orderby: String(orderBy.value),
+        order: String(order.value),
       });
+
+      const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
+      console.log(urlWithParams);
+
+      const response = await fetch(urlWithParams, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          'Failed to fetch products. Server responded with status ' +
+            response.status
+        );
+      }
+
+      const responseData = await response.json();
+      setIsLoading(false);
+      setProducts(responseData.result.payload);
+      setTotalPages(responseData.result.pages);
+      setTotalProducts(responseData.result.total);
+    } catch (error) {
+      setIsLoading(false);
+      console.error('There was a problem with the fetch operation:', error);
+      alert('Failed to fetch products. Please try again later.');
+    }
   };
 
   /* Handle the submit event for searchbar */
@@ -179,7 +180,6 @@ function ListProducts() {
               <FontAwesomeIcon icon={faAdd}></FontAwesomeIcon>
             </button>
           </div>
-          {/* <SignOutButton></SignOutButton> */}
         </div>
 
         {/* Filters */}

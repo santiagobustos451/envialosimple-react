@@ -1,3 +1,22 @@
+/* 
+Login format
+
+.loginContainer
+  .loginWindow
+    .info
+      <Message>
+    .loginForm
+      form
+        .formField
+          input
+          formError
+        .passwordField.formField
+          input
+          formError
+        .formFooter
+          button
+*/
+
 .loginContainer {
   height: 100dvh;
   width: 100dvw;
@@ -5,7 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-dark);
+  background-color: var(--color-dark-1);
 }
 
 .loginWindow {
@@ -37,7 +56,7 @@
 .loginForm {
   display: flex;
   padding: 20px;
-  background-color: var(--color-dark-subdued);
+  background-color: var(--color-dark-3);
   flex: 2;
   gap: 20px;
 }
@@ -112,7 +131,7 @@ input {
 
   .loginForm {
     justify-content: flex-start;
-    background-color: var(--color-dark-subdued);
+    background-color: var(--color-dark-3);
     align-items: flex-start;
   }
 

@@ -45,39 +45,47 @@ function EditProduct({ isOpen, setModalOpen, product }: EditProductProps) {
   }, [isOpen]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    const queryParams = new URLSearchParams({
-      name: String(data.name),
-      price: String(data.price),
-    });
-    const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
-
-    await fetch(urlWithParams, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response);
-          if (response.status === 422) {
-            setError('root', {
-              message: 'This product name is already in use',
-            });
-          }
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((responseData) => {
-        setModalOpen(false);
-        reset();
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
+    try {
+      const queryParams = new URLSearchParams({
+        name: String(data.name),
+        price: String(data.price),
       });
+      const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
+
+      const response = await fetch(urlWithParams, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        console.error(
+          'Failed to submit form. Server responded with status:',
+          response.status
+        );
+
+        if (response.status === 422) {
+          setError('root', {
+            message: 'This product name is already in use',
+          });
+        } else {
+          setError('root', {
+            message: 'Failed to submit form. Please try again later.',
+          });
+        }
+
+        throw new Error('Network response was not ok');
+      }
+
+      const responseData = await response.json();
+      setModalOpen(false);
+      reset();
+      console.log(responseData);
+    } catch (error) {
+      console.error('There was a problem with the form submission:', error);
+    }
   };
 
   return (

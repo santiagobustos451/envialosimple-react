@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: 60px 60px 1fr 50px;
   grid-template-columns: 200px 1fr 200px;
-  background-color: var(--color-dark-subdued);
+  background-color: var(--color-dark-3);
   border-radius: var(--rounded-big);
   box-sizing: border-box;
   height: calc(100% - 60px);
@@ -19,7 +19,7 @@
   margin: 0;
   grid-row: 3;
   grid-column: 1 / span 3;
-  background-color: var(--color-dark);
+  background-color: var(--color-dark-1);
   overflow: scroll;
 }
 
@@ -67,7 +67,7 @@ table td {
 }
 
 table td.actions {
-  border-left: solid 1px var(--color-dark-subdued);
+  border-left: solid 1px var(--color-dark-3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,12 +80,12 @@ table th {
 }
 
 table tr {
-  background-color: var(--color-dark);
+  background-color: var(--color-dark-1);
   height: 48px;
 }
 
 table tr:nth-child(odd) {
-  background-color: var(--color-dark-transparent);
+  background-color: var(--color-dark-2);
 }
 
 .header .title {
@@ -96,7 +96,7 @@ table tr:nth-child(odd) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--color-dark-transparent);
+  border-bottom: 1px solid var(--color-dark-2);
   padding: 0 20px;
   grid-row: 1;
   grid-column: 1 / span 3;
@@ -129,12 +129,12 @@ table tr:nth-child(odd) {
 }
 
 .searchbar input {
-  color: var(--color-light);
+  color: var(--color-light-1);
   box-sizing: border-box;
   border: none;
   outline: none;
   padding: 5px;
-  background-color: var(--color-light-transparent);
+  background-color: var(--color-light-3);
   height: 40px;
   border-radius: 20px;
   padding: 0 10px;
@@ -154,11 +154,11 @@ table tr:nth-child(odd) {
 }
 
 .searchbar .searchButton:hover {
-  background-color: var(--color-light-subdued);
+  background-color: var(--color-light-2);
 }
 
 .searchbar .searchButton .icon path {
-  fill: var(--color-light-subdued);
+  fill: var(--color-light-2);
 }
 
 .searchbar .link {
@@ -230,7 +230,7 @@ table tr:nth-child(odd) {
 }
 
 .addButton path {
-  fill: var(--color-light-subdued);
+  fill: var(--color-light-2);
 }
 
 .mobileFilters {

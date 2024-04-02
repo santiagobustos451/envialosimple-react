@@ -32,7 +32,7 @@
 
 .modalWindow {
   position: relative;
-  background-color: var(--color-dark);
+  background-color: var(--color-dark-1);
   border-radius: var(--rounded-small);
   display: flex;
   flex-direction: column;
@@ -60,11 +60,11 @@
 }
 
 .modalWindow .closeButton:hover {
-  background-color: var(--color-dark-transparent);
+  background-color: var(--color-dark-2);
 }
 
 .modalWindow .closeButton path {
-  fill: var(--color-light-subdued);
+  fill: var(--color-light-2);
 }
 
 .modalHeader {
@@ -72,7 +72,7 @@
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  border-bottom: 1px solid var(--color-dark-transparent);
+  border-bottom: 1px solid var(--color-dark-2);
 }
 
 @media screen and (max-width: 767px) {

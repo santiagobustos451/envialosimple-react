@@ -5,11 +5,11 @@
   flex-direction: column;
   border-radius: var(--rounded-small);
   font-size: large;
-  background-color: var(--color-dark-transparent);
+  background-color: var(--color-dark-2);
 }
 
 .filterMenu > * {
-  border-bottom: solid 1px var(--color-dark-transparent);
+  border-bottom: solid 1px var(--color-dark-2);
 }
 
 .filterMenu > *:last-child {
@@ -17,8 +17,8 @@
 }
 
 .filterButton {
-  color: var(--color-light);
-  background-color: var(--color-dark-transparent);
+  color: var(--color-light-1);
+  background-color: var(--color-dark-2);
   display: flex;
   padding: 20px;
   flex-direction: column;
@@ -43,7 +43,7 @@
 
 .filterOptions {
   box-sizing: border-box;
-  background-color: var(--color-dark-subdued);
+  background-color: var(--color-dark-3);
   padding: 0px 20px;
   display: flex;
   flex-direction: column;

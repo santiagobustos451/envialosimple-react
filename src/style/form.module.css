@@ -56,8 +56,8 @@ Form format
 }
 
 .formField input {
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background-color: var(--color-dark-1);
+  color: var(--color-light-1);
   padding: 10px;
   border: solid 1px var(--color-accent-dark);
   border-radius: var(--rounded-small);
@@ -67,7 +67,7 @@ Form format
 
 .formField label {
   order: -1;
-  color: var(--color-light-subdued);
+  color: var(--color-light-2);
 }
 
 .formField input:focus {
