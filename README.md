@@ -2,11 +2,11 @@
 
 ### Introducción:
 
-Este documento proporciona una guía detallada sobre el desarrollo de la aplicación web requerida para el desafío técnico de Desarrollador Frontend. La aplicación está diseñada para cumplir con los requisitos especificados por la empresa y se espera que demuestre habilidades en el desarrollo frontend, incluyendo la implementación de funcionalidades de autenticación, manejo de formularios y diseño responsivo.
+Este proyecto es la resolución de un desafío técnico, con el objetivo de demostrar habilidades de desarrollo frontend, incluyendo la implementación de funcionalidades de autenticación, manejo de formularios y diseño responsivo. A continuación se describirá detalladamente la estructura de la aplicación y su funcionamiento.
 
 ## Instrucciones para ejecutar la aplicación Dockerizada
 
-Requisitos previos: Para ejecutar esta aplicación correctamente, asegurarse de que Docker esté instalado y sea accesible desde la línea de comandos.
+**Requisitos previos:** Para ejecutar esta aplicación correctamente, asegurarse de que Docker esté instalado y sea accesible desde la línea de comandos.
 
 1. **Clonar el repositorio:**
    Clonar el repositorio del proyecto.
@@ -33,31 +33,8 @@ Este comando ejecutará el contenedor y mapeará el puerto 8080 del contenedor a
 5. **Acceder a la aplicación:**
    Después de ejecutar el contenedor, abrir un navegador web y navegar a http://localhost:8080. Deberías ver la aplicación ejecutándose.
 
-Siguiendo estos pasos, la aplicación debería estar funcionando correctamente en su máquina local en el puerto 8080.
 
 ### Estructura del Proyecto:
-
-El proyecto está organizado en las siguientes carpetas principales:
-
-- **src**: Esta carpeta es el núcleo del proyecto y contiene todos los archivos relacionados con el desarrollo de la aplicación.
-
-   - **assets**: Aquí se almacenan los recursos estáticos utilizados en la aplicación, como archivos SVG u otros recursos multimedia.
-
-   - **components**: Esta carpeta contiene componentes reutilizables que se utilizan en diferentes partes de la aplicación. Se subdivide en:
-
-     - **auth**: Contiene componentes relacionados con la autenticación, como el botón de cierre de sesión.
-
-     - **common**: Aquí se encuentran componentes de uso general que no están directamente relacionados con la lógica de negocio de la aplicación.
-
-     - **forms/products**: Contiene formularios específicos para interactuar con la API de productos, como formularios de creación, edición o eliminación de productos.
-
-     - **svg**: Esta carpeta alberga componentes que facilitan el uso de gráficos SVG en la aplicación.
-
-   - **pages**: En esta carpeta se encuentran los componentes asociados a las diferentes páginas de la aplicación, como la página de inicio de sesión (`Login`), la página de listado de productos (`ListProducts`) y componentes relacionados con la gestión de rutas y errores (`RouteError`).
-
-   - **style**: Aquí se encuentran los archivos de estilos CSS utilizados en la aplicación.
-
-### Diagrama de la Estructura de Carpetas:
 
 ```
 src
@@ -69,24 +46,26 @@ src
 ├── components
 │ ├── auth
 │ │ └── SignOutButton.tsx
-│ ├── common
+│ │
+│ ├── common // Componentes de uso general, partes de la interfaz
 │ │ ├── Dropdown.tsx
 │ │ ├── Modal.tsx
 │ │ └── ...
-│ ├── forms
+│ │
+│ ├── forms // Formularios que se comunican con los endpoints de la API
 │ │ └── products
-│ │ ├── AddProduct.tsx
-│ │ ├── EditProduct.tsx
-│ │ └── ...
+│ │   ├── AddProduct.tsx
+│ │   ├── EditProduct.tsx
+│ │   └── ...
+│ │
 │ └── svg
 │ ├── Logotype.tsx
 │ └── ...
 │
-├── pages
+├── pages // Componentes asociados a rutas
 │ ├── Login.tsx
 │ ├── ListProducts.tsx
-│ ├── RouteError.tsx
-│ └── ...
+│ └── RouteError.tsx
 │
 └── style
 ├── base.css
@@ -106,7 +85,7 @@ La aplicación consta de las siguientes funcionalidades principales, de acuerdo 
 2. **Listado de Productos**:
    - Sección privada que requiere autenticación para acceder.
    - Muestra los productos disponibles en el stock, utilizando el endpoint "Listar Productos".
-   - Funcionalidades adicionales incluyen filtrado, ordenamiento, paginación, adicion, edición y eliminación de productos.
+   - Funcionalidades adicionales incluyen filtrado, ordenamiento, paginación, y acceso a los formularios de adición, edición y eliminación de productos.
 
 ### Interacción con la API:
 
@@ -170,21 +149,21 @@ const fetchProducts = async () => {
 
 ### Organización de Estilos CSS:
 
-En este proyecto, los estilos CSS están organizados de manera modular y coherente para facilitar el mantenimiento y la escalabilidad del código. Se siguen las siguientes convenciones de organización:
+Los estilos CSS están organizados de manera modular para facilitar el mantenimiento y la escalabilidad del código. Se siguen las siguientes convenciones de organización:
 
-- **Archivo base.css**: Este archivo contiene estilos globales y universales que se aplican a toda la aplicación, como definiciones de colores, fuentes y estilos de botones. También se establecen variables CSS personalizadas para la fácil personalización y mantenimiento del diseño.
+- **Archivo base.css**: Este archivo contiene estilos globales que se aplican a toda la aplicación, como definiciones de colores, fuentes y estilos de botones. También se establecen variables CSS personalizadas para la fácil personalización y mantenimiento del diseño.
 
 - **Archivos .module.css asociados a cada componente**: Los estilos específicos de cada componente se encuentran en archivos CSS modulares asociados directamente con cada componente React. Esto ayuda a evitar conflictos de estilos y facilita la comprensión del alcance de los estilos en cada componente.
 
 - **Formato de clases**: Las clases CSS siguen el formato snakeCase para facilitar su integración en el código mediante el uso de módulos CSS.
 
-- **Media Queries para diseño responsivo**: Se utilizan media queries para aplicar estilos específicos según el tamaño de la pantalla, garantizando una experiencia de usuario consistente en diferentes dispositivos y resoluciones.
+- **Media Queries para diseño responsivo**: Se utilizan media queries para aplicar estilos específicos y reordenar los elementos según el tamaño de la pantalla, garantizando una experiencia de usuario consistente en diferentes dispositivos y resoluciones.
 
 ### Nota Adicional:
 
 Este proyecto utiliza las siguientes tecnologías y bibliotecas:
 
-- React para el desarrollo frontend.
+- React para el desarrollo frontend - Compilado mediante Vite.
 - React Router para el enrutamiento de la aplicación.
 - React Auth Kit para la gestión de la autenticación de usuario.
 - React Hook Form para el manejo de formularios.
