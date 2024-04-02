@@ -11,8 +11,16 @@ Este proyecto es la resolución de un desafío técnico, con el objetivo de demo
 1. **Clonar el repositorio:**
    Clonar el repositorio del proyecto.
 
+```bash
+git clone https://github.com/santiagobustos451/envialosimple-react/
+```
+
 2. **Navegar al directorio del proyecto:**
    Abrir una terminal y navegar hasta el directorio raíz del proyecto.
+
+```bash
+cd envialosimple-react
+```
 
 3. **Construir la imagen Docker:**
    Ejecutar el siguiente comando para construir la imagen Docker.
@@ -22,16 +30,23 @@ docker build -t envialosimple-react:v1.0 .
 ```
 
 4. **Ejecutar el contenedor Docker:**
-   Después de que la imagen se haya construido con éxito, ejecutar el siguiente comando para iniciar el contenedor Docker:
+   Una vez que la imagen se haya construido correctamente, ejecutar el siguiente comando para iniciar el contenedor Docker. Asegurarse de elegir un puerto local que esté disponible y abierto para mapearlo al puerto del contenedor (por ejemplo, el puerto 8080):
 
 ```bash
-docker run -p 8080:8080 envialosimple-react:v1.0
+docker run -p <puerto_local>:8080 envialosimple-react:v1.0
 ```
 
-Este comando ejecutará el contenedor y mapeará el puerto 8080 del contenedor al puerto 8080 localmente.
+Reemplaza <puerto_local> con el número de puerto local que desees utilizar.
+
+Este comando ejecutará el contenedor y mapeará el puerto 8080 del contenedor al puerto especificado localmente.
 
 5. **Acceder a la aplicación:**
-   Después de ejecutar el contenedor, abrir un navegador web y navegar a http://localhost:8080. Deberías ver la aplicación ejecutándose.
+   Una vez que el contenedor esté en ejecución, abre un navegador web y navega a la siguiente dirección:
+
+```
+http://localhost:<puerto_local>
+```
+Reemplaza <puerto_local> con el número de puerto local que hayas elegido. Por ejemplo, si has elegido el puerto 8080, la dirección sería http://localhost:8080. Deberías ver la aplicación ejecutándose correctamente en tu navegador.
 
 
 ### Estructura del Proyecto:
