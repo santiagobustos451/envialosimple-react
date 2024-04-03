@@ -107,6 +107,9 @@ table tr:nth-child(odd) {
   display: flex;
   align-items: center;
   gap: 20px;
+  max-width: fit-content;
+  min-width: 0;
+  flex: 1 1 0;
 }
 
 .filters {
@@ -124,8 +127,19 @@ table tr:nth-child(odd) {
   padding: 0;
   box-sizing: content-box;
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 10px;
+  flex: 1 1 0;
+  max-width: fit-content;
+  min-width: 0;
+}
+
+.searchbar form {
+  flex-direction: row;
+  flex: 1 1 0;
+  max-width: fit-content;
+  min-width: 0;
 }
 
 .searchbar input {
@@ -133,12 +147,14 @@ table tr:nth-child(odd) {
   box-sizing: border-box;
   border: none;
   outline: none;
-  padding: 5px;
   background-color: var(--color-light-3);
   height: 40px;
   border-radius: 20px;
   padding: 0 10px;
   z-index: 1;
+  flex: 1 1 0;
+  max-width: fit-content;
+  min-width: 0;
 }
 
 .searchbar .searchButton {
@@ -167,10 +183,19 @@ table tr:nth-child(odd) {
   width: fit-content;
   background-color: transparent;
   border: none;
+  margin-right: -10px;
+}
+
+.searchbar .link path {
+  fill: var(--color-accent-dark);
 }
 
 .searchbar .link:hover {
   color: var(--color-accent);
+}
+
+.searchbar .link:hover path {
+  fill: var(--color-accent);
 }
 
 .pageNav {

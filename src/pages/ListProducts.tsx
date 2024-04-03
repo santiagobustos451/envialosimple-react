@@ -10,6 +10,7 @@ import ListCSS from '../style/list.module.css';
 
 import {
   faAdd,
+  faX,
   faEdit,
   faFilter,
   faSearch,
@@ -155,7 +156,7 @@ function ListProducts() {
                   className={`${ListCSS.link}`}
                   onClick={() => resetSearch()}
                 >
-                  Clear Search
+                  <FontAwesomeIcon icon={faX}></FontAwesomeIcon>
                 </button>
               )}
               <form onSubmit={handleSearch}>
