@@ -52,7 +52,7 @@
   pointer-events: none;
   height: 0;
   transition: transform 100ms ease-in-out;
-  border-radius: 0 0 var(--rounded-small) var(--rounded-small);
+  border-radius: 0;
 }
 
 .filterOptions.active {
